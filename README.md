@@ -9,6 +9,10 @@ This project demonstrates a complete DevSecOps workflow with AWS, including:
 - Monitoring and Logging
 - AWS Best Practices
 
+## Last Updated
+- Date: April 3, 2025
+- Status: AWS Integration Test
+
 ## Architecture
 
 The application consists of:
