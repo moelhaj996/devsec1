@@ -10,8 +10,9 @@ This project demonstrates a complete DevSecOps workflow with AWS, including:
 - AWS Best Practices
 
 ## Last Updated
-- Date: April 3, 2025
-- Status: AWS Integration Test
+- Date: April 3, 2025 15:30 UTC
+- Status: Testing AWS ECR Integration
+- Build: v1.0.1
 
 ## Architecture
 
