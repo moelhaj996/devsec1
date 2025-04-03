@@ -5,7 +5,13 @@ import os
 # Add the parent directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from app import app
+try:
+    from app import app
+except ImportError as e:
+    print(f"Error importing app: {e}")
+    print(f"Current directory: {os.getcwd()}")
+    print(f"Python path: {sys.path}")
+    raise
 
 @pytest.fixture
 def client():
