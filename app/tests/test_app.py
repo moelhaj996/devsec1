@@ -6,7 +6,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 try:
-    from app import app
+    from app import app, db
 except ImportError as e:
     print(f"Error importing app: {e}")
     print(f"Current directory: {os.getcwd()}")
@@ -15,9 +15,22 @@ except ImportError as e:
 
 @pytest.fixture
 def client():
+    # Configure the app for testing
     app.config['TESTING'] = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+    
+    # Initialize the database
+    with app.app_context():
+        db.create_all()
+    
+    # Create a test client
     with app.test_client() as client:
         yield client
+    
+    # Clean up after tests
+    with app.app_context():
+        db.session.remove()
+        db.drop_all()
 
 def test_health_check(client):
     """Test the health check endpoint."""
